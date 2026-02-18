@@ -16,8 +16,9 @@ sudo apt install golang-go -y
 #Installing prerequisites
 sudo apt install -y build-essential pkg-config libpcap-dev libusb-1.0-0-dev libnetfilter-queue-dev
 
-#Installing Bettercap using Go
-go install github.com/bettercap/bettercap@latest
+#Installing Bettercap using Go | Run the one on line 21 for the latest version of bettercap | Do not run both line 20 and 21, pick one
+#go install github.com/bettercap/bettercap@latest
+go install github.com/bettercap/bettercap/v2@latest
 
 #Put it on path
 sudo mv ~/go/bin/bettercap /usr/local/bin/
